@@ -2,7 +2,7 @@
 
 GLab sobre Kotlin
 
-![alt text](./CodeLabKotlinInfosoft2017.png)
+![alt text](./images/gdglima-glabkotlin.png)
 
 ## Resumen
 
@@ -22,12 +22,12 @@ Bienvenido al CodeLab de Kotlin , antes de empezar y para tener todo listo  para
  ```
   https://github.com/GDGLima/GLab-Kotlin/archive/master.zip
  ```
- <img src="./images/files-codelab.png" height="360">
+ <img src="./images/files-codelab1.png" height="360">
 
  * Explorar el CodeLab , en los files del CodeLab vamos a encontrar lo siguiente :
 
   * La carpeta  "/KotlinTemplate"
-  * La carpeta  "/Infosoft2017"
+  * La carpeta  "/GDGLimaApp"
   * La carpeta "/images"
   * Los archivos "README.md" y "TipsAndTricks.md"
 
@@ -67,7 +67,7 @@ Bienvenido al CodeLab de Kotlin , antes de empezar y para tener todo listo  para
     * Application name : KotlinTemplate
     * Company domain : emedinaa.com
     * Package name : com.emedinaa.infosoft.kotlintemplate
-    * Project location : ..Infosoft/repo/CodeLab-Kotlin-Infosoft-2017/KotlinTemplate
+    * Project location : ..GLabKotlin/repo/KotlinTemplate
 
   * Paso 3 : Minimum SDK
 
