@@ -1,4 +1,4 @@
-package com.emedinaa.infosoft.kotlintemplate;
+package com.gdglima.glabkotlin.kotlintemplate;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.emedinaa.infosoft.kotlintemplate", appContext.getPackageName());
+        assertEquals("com.gdglima.glabkotlin.kotlintemplate", appContext.getPackageName());
     }
 }

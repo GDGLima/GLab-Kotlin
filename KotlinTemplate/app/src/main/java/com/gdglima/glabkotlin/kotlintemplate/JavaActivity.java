@@ -1,4 +1,4 @@
-package com.emedinaa.infosoft.kotlintemplate;
+package com.gdglima.glabkotlin.kotlintemplate;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
