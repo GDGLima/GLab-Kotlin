@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4d8cf4</color>
+    <color name="colorPrimaryDark">#0062ab</color>
+    <color name="colorAccent">@color/yellowInfosoft</color>
+
+    <color name="yellowInfosoft">#ffc109</color>
+    <color name="blueGDGLima">#4d8cf4</color>
+    <color name="redGDGLima">#dd4e41</color>
+    <color name="greenGDGLima">#149f5b</color>
+    <color name="blue2Infosoft">#3d647e</color>
+    <color name="greyGDGLima">#F5F5F6</color>
+</resources>

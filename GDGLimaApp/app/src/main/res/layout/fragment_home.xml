@@ -1,0 +1,63 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.gdglima.glabkotlin.gdglimaapp.ui.fragments.HomeFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@mipmap/ic_logo_gdglima_h"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:adjustViewBounds="true" />
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtHome" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/ic_meetup"/>
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/ic_facebook"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/ic_twitter"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/ic_youtube2"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
