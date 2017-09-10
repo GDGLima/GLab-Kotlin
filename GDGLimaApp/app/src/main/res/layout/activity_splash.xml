@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/greyGDGLima"
+    android:id="@+id/constraintLayoutContainer"
     tools:context="com.gdglima.glabkotlin.gdglimaapp.SplashActivityK">
 
     <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/imageViewLogo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"

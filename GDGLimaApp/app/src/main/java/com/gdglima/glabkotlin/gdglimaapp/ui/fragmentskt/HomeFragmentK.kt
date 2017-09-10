@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gdglima.glabkotlin.gdglimaapp.R
+import com.gdglima.glabkotlin.gdglimaapp.helpers.fadeIn
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * Created by emedinaa on 2/09/17.
@@ -47,5 +49,19 @@ class HomeFragmentK: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        startAnimations()
+    }
+
+    private fun startAnimations(){
+        //imageViewGDGLima.alpha=0.0f
+        //imageViewMeetup.alpha=0.0f
+        //imageViewFacebook.alpha=0.0f
+        //imageViewTwitter.alpha=0.0f
+
+        fadeIn(imageViewGDGLima)
+        fadeIn(imageViewMeetup,1000,500)
+        fadeIn(imageViewFacebook,1000,700)
+        fadeIn(imageViewTwitter,1000,900)
+        fadeIn(imageViewYoutube,1000,1000)
     }
 }

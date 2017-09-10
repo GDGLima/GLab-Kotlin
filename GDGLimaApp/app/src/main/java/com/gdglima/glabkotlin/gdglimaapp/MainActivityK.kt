@@ -11,6 +11,7 @@ import com.gdglima.glabkotlin.gdglimaapp.ui.fragmentskt.SpeakersFragmentK
 import com.gdglima.glabkotlin.gdglimaapp.ui.fragmentskt.SponsorsFragmentK
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivityK : BaseActivityK() {
 
     private var itemId=0
@@ -26,7 +27,7 @@ class MainActivityK : BaseActivityK() {
      * https://kotlinlang.org/docs/reference/basic-syntax.html
      */
     private fun app() {
-
+        disabledDefaultAnimation()
         val menuItem:MenuItem= bottomNavigation.menu.getItem(0)
         itemId= menuItem.itemId
         changeFragment(HomeFragmentK.newInstance())
@@ -57,6 +58,8 @@ class MainActivityK : BaseActivityK() {
             changeFragment(fragment!!)
             true
         }
+
+        //slideDown(bottomNavigation)
     }
 
     private fun  changeFragment(fragment: Fragment){
@@ -64,6 +67,5 @@ class MainActivityK : BaseActivityK() {
         fragmenTransaction.replace(R.id.frameLayout,fragment,null)
         fragmenTransaction.commit()
     }
-
 
 }
