@@ -66,7 +66,7 @@ Bienvenido al CodeLab de Kotlin , antes de empezar y para tener todo listo  para
   * Paso 2 : Configure you new project
     * Application name : KotlinTemplate
     * Company domain : emedinaa.com
-    * Package name : com.emedinaa.infosoft.kotlintemplate
+    * Package name : com.gdglima.glabkotlin.kotlintemplate
     * Project location : ..GLabKotlin/repo/KotlinTemplate
 
   * Paso 3 : Minimum SDK
@@ -158,3 +158,334 @@ Bienvenido al CodeLab de Kotlin , antes de empezar y para tener todo listo  para
 #### [3.6] Conoce algunos tips y trucos
 
 * El plugin de Kotlin en Android Studio integra una serie de herramientas para facilitar el desarrollo de Android en este IDE , por lo que recopilé algunos tips y trucos que te pueden servir [TipsAndTricks](./TipsAndTricks.md)
+
+## [4] GDGLima App
+
+* Vamos a construir una pequeña aplicación en Kotlin para eventos del GDGLima , donde mostraremos las siguientes secciones :
+
+  * Inicio
+
+  * Expositores
+
+  * Agenda
+
+  * Sponsors
+
+
+<img src="./images/app-splash.png" height="480"> <img src="./images/app-home.png" height="480">  <img src="./images/app-speakers1.png" height="480">
+
+<img src="./images/app-sponsors.png" height="480">
+
+## [5] Construye las vistas y la UI de tu App
+
+* findViewById
+
+```
+      findViewById(R.id.imageViewJava).setOnClickListener(...);
+      findViewById(R.id.imageViewKotlin).setOnClickListener(...);
+```
+
+```
+      imageViewJava.setOnClickListener{ ... }
+```
+
+
+* Fragments en Java
+
+```java
+public class SpeakersFragment extends Fragment {
+
+  private static final String ARG_PARAM1 = "param1";
+  private static final String ARG_PARAM2 = "param2";
+
+  private String mParam1;
+  private String mParam2;
+
+  public SpeakersFragment() {}
+
+  public static SpeakersFragment newInstance(String param1, String param2) {
+        SpeakersFragment fragment = new SpeakersFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+  }
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      if (getArguments() != null) {
+          mParam1 = getArguments().getString(ARG_PARAM1);
+          mParam2 = getArguments().getString(ARG_PARAM2);
+      }
+  }
+
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                            Bundle savedInstanceState) {
+       // Inflate the layout for this fragment
+       return inflater.inflate(R.layout.fragment_speakers, container, false);
+  }
+
+  @Override
+  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+       super.onActivityCreated(savedInstanceState);
+  }
+}
+```
+
+* Fragments en Kotlin
+
+```java
+class SpeakersFragmentK : Fragment {
+
+  companion object {
+    private val ARG_PARAM1 = "param1"
+    private val ARG_PARAM2 = "param2"
+
+    fun newInstance(param1: String, param2: String): SpeakersFragmentK {
+        var args: Bundle = Bundle()
+        args.putString(ARG_PARAM1, param1)
+        args.putString(ARG_PARAM2, param2)
+
+        var homeFragment: SpeakersFragmentK = newInstance()
+        homeFragment.arguments = args
+        return homeFragment
+    }
+
+    fun newInstance(): SpeakersFragmentK {
+        return SpeakersFragmentK()
+    }
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+     super.onCreate(savedInstanceState)
+     if (arguments != null) {
+         mParam1 = arguments.getString(ARG_PARAM1)
+         mParam2 = arguments.getString(ARG_PARAM2)
+     }
+  }
+
+  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    return inflater!!.inflate(R.layout.fragment_speakers, container, false)
+  }
+
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+  }
+
+}
+
+```
+
+
+## [6] Agrega interactividad  a tu app mediante eventos
+
+```
+    private void  goToActivity(Class activity){
+        startActivity(new Intent(this,activity));
+    }
+
+    @Override
+    public void onClick(View view) {
+          switch (view.getId()){
+              case R.id.imageViewJava:
+                      goToActivity(JavaActivity.class);
+                  break;
+              case R.id.imageViewKotlin:
+                      goToActivity(KotlinActivity.class);
+                  break;
+          }
+    }
+    private void app() {
+        findViewById(R.id.imageViewJava).setOnClickListener(this);
+        findViewById(R.id.imageViewKotlin).setOnClickListener(this);
+
+    }
+```
+
+
+```
+
+   private fun  showMessage(){
+        Toast.makeText(this,"Hello Kotlin",Toast.LENGTH_LONG).show()
+   }
+
+   private fun app() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //textViewHello
+        imageViewJava.setOnClickListener{
+            showMessage();
+        }
+    }
+```
+
+## [7] Maneja Listas y Adaptaders usando RecyclerView
+
+  * Crear un adapter en Kotlin
+
+  ```java
+    class EventAdapterK(val events:List<EntityK.EventK>, val context: Context): RecyclerView.Adapter<EventAdapterK.ViewHolder>() {
+
+      class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+          val textViewName: TextView = view.textViewName
+          val textViewDesc: TextView = view.textViewDesc
+          val imageView: ImageView = view.imageView
+      }
+
+      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+          val layoutInflater = LayoutInflater.from(parent.context)
+          return ViewHolder(layoutInflater.inflate(R.layout.row_event, parent, false))
+      }
+
+      override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+          val time: String = events[position].time!!
+          val activity: String? = events[position].activity
+
+          holder.textViewName.text = time
+          holder.textViewDesc.text = activity
+      }
+
+      override fun getItemCount(): Int {
+          return events.size
+      }
+  }
+  ```
+
+  * RecyclerView
+
+  ```java
+      private fun ui(){
+         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity!!)
+         recyclerViewSpeakers.layoutManager= mLayoutManager
+     }
+
+     private fun renderSpeakers(speakers:List<EntityK.SpeakerK>){
+       if(activity!=null){
+           speakerAdapter= SpeakerAdapterK(speakers,activity)
+           recyclerViewSpeakers.setAdapter(speakerAdapter)
+       }
+    }
+
+  ```
+
+## [8] Carga datos dinámicamente y aprende sobre persistencia de datos.
+
+  * Vamos a consumir servicios Restful para cada de las secciones de la app , para esto usaremos  Retrofit2 [http://square.github.io/retrofit/](http://square.github.io/retrofit/) . Esta librería esta hecha en Java , lo cual no es un problema , ya que Kotlin  es interoperable con Java, asi que puedes seguir usando las librerias que hayas trabajado anteriormente sin problemas.
+
+  * Route & Endpoints
+
+    * Route
+      ```
+        https://blooming-oasis-63723.herokuapp.com/
+      ```
+
+    * Endpoints
+
+Acción | Tipo  | URL
+------------ | ------------- | -------------      
+Listar Expositores  | GET | /speakers
+Listar Sponsors  | GET | /sponsors
+Agenda - Talleres  | GET | /workshops
+Agenda - Actividades  | GET | /events
+Agenda - Actividades por fecha | POST | /events
+
+  * Pueden usar una herramienta como POSTMAN para probar los servicios [link](https://www.getpostman.com/)
+
+  * ApliClient , en esta clase vamos a declarar el  cliente HTPP y los endpoints
+
+  ```java
+    class ApliClientK {
+      companion object {
+          private var servicesApiInterface: ServicesApiInterface? = null
+          private val API_BASE_URL = "https://blooming-oasis-63723.herokuapp.com"
+
+          private fun interceptor(): HttpLoggingInterceptor {
+              val httpLoggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
+              httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+              return httpLoggingInterceptor
+          }
+
+          private fun defaultCache():Cache{
+              val cacheSize:Long=10 * 1024 * 1024;
+              val cacheDir = File(System.getProperty("java.io.tmpdir"), UUID.randomUUID().toString())
+              val cache:Cache= Cache(cacheDir,cacheSize)
+              return  cache
+          }
+
+          fun getMyApiClient(): ServicesApiInterface {
+              var builder: Retrofit.Builder = Retrofit.Builder()
+                      .baseUrl(API_BASE_URL)
+                      .addConverterFactory(GsonConverterFactory.create())
+
+              var httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
+              httpClient.addInterceptor(interceptor())
+              httpClient.cache(defaultCache())
+
+              var retrofit: Retrofit = builder.client(httpClient.build()).build()
+              servicesApiInterface = retrofit.create(
+                      ServicesApiInterface::class.java)
+
+              return servicesApiInterface as ServicesApiInterface
+          }
+      }
+
+      interface ServicesApiInterface{
+
+          @Headers("Content-Type: application/json")
+          @GET("/speakers")
+          fun speakers():Call<SpeakerResponseK>
+
+          @Headers("Content-Type: application/json")
+          @GET("/sponsors")
+          fun sponsors():Call<SponsorResponseK>
+
+          @Headers("Content-Type: application/json")
+          @GET("/workshops")
+          fun workshops():Call<EventResponseK>
+
+          @FormUrlEncoded
+          @Headers("Content-Type: application/json")
+          @POST("/events")
+          fun events(@Field("date") mDate:String):Call<EventResponseK>
+      }
+  }
+  ```
+
+  * Realicemos una llamada a un servicio
+
+  ```java
+      private val callback: Callback<SpeakerResponseK> = object: Callback<SpeakerResponseK> {
+        override fun onResponse(call: Call<SpeakerResponseK>?, response: Response<SpeakerResponseK>?) {
+            log({"onResponse $response.body()"})
+            renderSpeakers(response!!.body().data)
+        }
+
+        override fun onFailure(call: Call<SpeakerResponseK>?, t: Throwable?) {
+            log({"onFailure $t"})
+        }
+      }
+
+      private fun requestSpeakers(){
+          ApliClientK.getMyApiClient().speakers()
+          //val call: Call<SpeakerResponseK> = ApliClientK.getMyApiClient().speakers()
+          currentCall = ApliClientK.getMyApiClient().speakers()
+          currentCall!!.enqueue(callback)
+      }
+  ```
+
+## [9] Referencias
+
+  * Google CodeLabs Kotlin https://codelabs.developers.google.com/codelabs/build-your-first-android-app-kotlin/
+  * Android Studio https://developer.android.com/studio/index.html
+
+  * Realm - Getting started with Kotlin and Anko on Android
+  https://academy.realm.io/posts/getting-started-with-kotlin-and-anko/
+
+## [10] Ayuda a mejorar este CodeLab
+
+  * Si encuentras algún issue puedes reportarlo a este link [https://github.com/GDGLima/GLab-Kotlin/issues](https://github.com/GDGLima/GLab-Kotlin/issues)
+  * Si deseas colaborar puedes clonar este repo y luego enviar un pull request
+
+  Happy coding !
