@@ -9,7 +9,15 @@ import com.gdglima.glabkotlin.gdglimaapp.BuildConfig
 /**
  * Created by emedinaa on 2/09/17.
  */
-open class BaseActivityK : AppCompatActivity() {
+open abstract class BaseActivityK : AppCompatActivity() {
+
+    //abstract fun startViewsAnimation()
+    //abstract fun endViewsAnimation()
+
+    fun disabledDefaultAnimation(){
+        overridePendingTransition(0,0)
+    }
+
 
     fun log(lambda: () -> String) {
         if (BuildConfig.DEBUG) {

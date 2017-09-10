@@ -13,7 +13,7 @@
         android:paddingTop="10dp"
         android:orientation="vertical">
         <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewGDGLima"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:src="@mipmap/ic_logo_gdglima_h"
@@ -32,12 +32,14 @@
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/imageViewMeetup"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
                 android:adjustViewBounds="true"
                 android:src="@mipmap/ic_meetup"/>
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/imageViewFacebook"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
@@ -45,6 +47,7 @@
                 android:src="@mipmap/ic_facebook"/>
 
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/imageViewTwitter"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
@@ -52,6 +55,7 @@
                 android:src="@mipmap/ic_twitter"/>
 
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/imageViewYoutube"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
