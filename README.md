@@ -176,6 +176,8 @@ Bienvenido al CodeLab de Kotlin , antes de empezar y para tener todo listo  para
 
 <img src="./images/app-sponsors.png" height="480">
 
+ ![](./video.gif?raw=true)
+
 ## [5] Construye las vistas y la UI de tu App
 
 * findViewById
