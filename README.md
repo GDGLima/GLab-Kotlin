@@ -385,11 +385,9 @@ class SpeakersFragmentK : Fragment {
 
 Acción | Tipo  | URL
 ------------ | ------------- | -------------      
-Listar Expositores  | GET | /speakers
-Listar Sponsors  | GET | /sponsors
-Agenda - Talleres  | GET | /workshops
-Agenda - Actividades  | GET | /events
-Agenda - Actividades por fecha | POST | /events
+Listar Expositores  | GET | /gdglima/speakers
+Listar Sponsors  | GET | /gdglima/sponsors
+Listar ponencias  | GET | /gdglima/ponencias
 
   * Pueden usar una herramienta como POSTMAN para probar los servicios [link](https://www.getpostman.com/)
 
@@ -433,23 +431,18 @@ Agenda - Actividades por fecha | POST | /events
 
       interface ServicesApiInterface{
 
-          @Headers("Content-Type: application/json")
-          @GET("/speakers")
-          fun speakers():Call<SpeakerResponseK>
+             @Headers("Content-Type: application/json")
+             @GET("/gdglima/speakers")
+             fun speakers():Call<SpeakerResponseK>
 
-          @Headers("Content-Type: application/json")
-          @GET("/sponsors")
-          fun sponsors():Call<SponsorResponseK>
+             @Headers("Content-Type: application/json")
+             @GET("/gdglima/sponsors")
+             fun sponsors():Call<SponsorResponseK>
 
-          @Headers("Content-Type: application/json")
-          @GET("/workshops")
-          fun workshops():Call<EventResponseK>
-
-          @FormUrlEncoded
-          @Headers("Content-Type: application/json")
-          @POST("/events")
-          fun events(@Field("date") mDate:String):Call<EventResponseK>
-      }
+             @Headers("Content-Type: application/json")
+             @GET("/gdglima/ponencias")
+             fun ponencias():Call<EventResponseK>
+         }
   }
   ```
 
