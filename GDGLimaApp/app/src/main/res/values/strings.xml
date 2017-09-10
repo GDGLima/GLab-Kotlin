@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">GDGLimaApp</string>
+
+    <!-- menu -->
+    <string name="home">Inicio</string>
+    <string name="speakers">Expositores</string>
+    <string name="schedule">Agenda</string>
+    <string name="sponsors">Sponsors</string>
+
+    <string name="talleres">Talleres</string>
+    <string name="programa">Programa</string>
+
+    <!-- home -->
+    <string name="txtHome">El Google Developer Group - GDG Lima es una comunidad que investiga, comparte y difunde tecnología Google en las áreas de desarrollo de software basado en Cloud, Mobile y Web; tales como Google Apps API, Apps Script, App Engine, GWT,  HTML5, API Maps, entre otras tecnologías.
+
+Nuestro objetivo es fortalecer los conocimientos de los profesionales de TI en la región difundiendo dichas tecnologías mediante eventos, workshops, reuniones mensuales, hangouts, entre otras actividades.
+
+La participación es libre y gratuita, tanto para principiantes, desarrolladores, lideres de proyectos y organizaciones en general interesadas en utilizar tecnología Google en sus proyectos. </string>
+
+    <!-- template -->
+    <string name="tmp_bio">Ingeniero Informático PUCP, Consultor Oracle en TS NET EVOL. Trabajó 1 año como Asistente de Tráfico Anómalo en Americatel Perú. Finalista del Torneo Universitario de Apps 2015 en Valparaíso, Chile y 2016 en Aguascalientes, México. Estudiante del diplomado en Business Coaching en CENTRUM Católica. CEO de Crea Tech. </string>
+</resources>
