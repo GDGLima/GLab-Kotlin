@@ -62,4 +62,21 @@
         app:layout_constraintVertical_bias="0.2"
         app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
 
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:id="@+id/buttonLearnKotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_lear_kotlin_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="51dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintVertical_bias="0.942" />
+
 </android.support.constraint.ConstraintLayout>

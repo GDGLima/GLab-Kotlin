@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="15dp"
+    tools:context="com.gdglima.glabkotlin.kotlintemplate.LearnKotlinActivity">
+
+    <Button
+        android:id="@+id/btn_sentencia"
+        style="@style/buttonLearn"
+        android:text="Sentencias como expresiones"
+        />
+
+    <Button
+        android:id="@+id/btn_safety_null"
+        style="@style/buttonLearn"
+        android:text="Safety Null"
+        />
+
+    <Button
+        android:id="@+id/btn_destructuring"
+        style="@style/buttonLearn"
+        android:text="Destructuring"
+        />
+
+</LinearLayout>

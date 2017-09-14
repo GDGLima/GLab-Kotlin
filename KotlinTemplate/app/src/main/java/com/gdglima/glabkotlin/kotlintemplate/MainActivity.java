@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void app() {
         findViewById(R.id.imageViewJava).setOnClickListener(this);
         findViewById(R.id.imageViewKotlin).setOnClickListener(this);
+        findViewById(R.id.buttonLearnKotlin).setOnClickListener(this);
         //startActivity(new Intent(this,JavaActivity.class));
         //startActivity(new Intent(this,KotlinActivity.class));
     }
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.imageViewKotlin:
                     goToActivity(KotlinActivity.class);
+                break;
+            case R.id.buttonLearnKotlin:
+                    goToActivity(LearnKotlinActivity.class);
                 break;
         }
     }
