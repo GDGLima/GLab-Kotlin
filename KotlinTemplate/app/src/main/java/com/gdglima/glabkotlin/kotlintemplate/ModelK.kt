@@ -16,7 +16,7 @@ class DangerousPerson (var nombres:String?,var apellidos:String?){
 data class Person(var nombres:String,var apellidos:String,var dni:String)
 
 object Validador{
-    val LOG_TAG="Validador"
+    val LOG_TAG="LearnKotlinActivity"
     fun imprimirNombres(persona:DangerousPerson?){
         Log.d(LOG_TAG, persona?.nombres ?: "la persona o sus datos no existen")
     }

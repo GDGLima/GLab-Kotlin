@@ -26,4 +26,9 @@
         android:text="Destructuring"
         />
 
+    <Button
+        android:id="@+id/btn_lambdas"
+        style="@style/buttonLearn"
+        android:text="Lambdas"
+        />
 </LinearLayout>

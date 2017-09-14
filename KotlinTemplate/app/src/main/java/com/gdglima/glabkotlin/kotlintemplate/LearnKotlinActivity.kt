@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import kotlin.reflect.KFunction1
 
 
 class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
@@ -27,6 +28,9 @@ class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
 
         findViewById(R.id.btn_sentencia).setOnClickListener(this)
         findViewById(R.id.btn_safety_null).setOnClickListener(this)
+        findViewById(R.id.btn_destructuring).setOnClickListener(this)
+        findViewById(R.id.btn_lambdas).setOnClickListener(this)
+
 
         val nombre="Kotlin"
         Snackbar.make(findViewById(R.id.container),"Hola $nombre",Snackbar.LENGTH_LONG).show()
@@ -57,6 +61,7 @@ class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_sentencia -> mayorDeDosNumeros(4,9)
             R.id.btn_safety_null -> safetyNull()
             R.id.btn_destructuring -> destructuring()
+            R.id.btn_lambdas->lambdas()
         }
     }
 
@@ -93,7 +98,14 @@ class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
         alert(resultadoTexto)
     }
 
-    
+    fun lambdas(){
+        ejecuta({ Log.d(LOG_TAG,"hola desde aquí") })
+    }
+        fun ejecuta(funcion: ()->Unit){
+            funcion()
+        }
+
+
 
     fun alert(message:String){
         val builder= AlertDialog.Builder(this)
