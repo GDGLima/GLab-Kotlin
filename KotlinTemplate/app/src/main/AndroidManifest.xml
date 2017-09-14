@@ -28,8 +28,6 @@
             android:label="@string/title_activity_learn_kotlin" /> <!-- Include the AdActivity configChanges and theme. -->
 
 
-        <activity android:name=".LearningKotlinActivity" />
-
     </application>
 
 </manifest>

@@ -47,7 +47,7 @@ Bienvenido al CodeLab de Kotlin , antes de empezar y para tener todo listo  para
   ```
       Run / Run App
   ```
-  <img src="./images/kotlin-template-app.png" height="360"> <img src="./images/kotlin-template-app1.png" height="360"> <img src="./images/kotlin-template-app2.png" height="360">
+  <img src="./images/kotlin-template-app.png" height="360"> <img src="./images/kotlin-template-app1.png" height="360"> <img src="./images/kotlin-template-app2.png" height="360"> <img src="./images/kotlin-template-app3.png" height="360">
 
 ### [1.2] Aprende sobre Kotlin
 
@@ -90,6 +90,8 @@ Bienvenido al CodeLab de Kotlin , antes de empezar y para tener todo listo  para
     <img src="./images/android-project2.png" height="360">
 
     <img src="./images/android-project3.png" height="360">
+
+    <img src="./images/android-project4.png" height="360">
 
 
 #### [3.2] Instala el plugin de Kotlin para Android Studio
