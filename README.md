@@ -8,6 +8,12 @@ GLab sobre Kotlin
 
 Este codelab está enfocado al desarrollo de aplicaciones Android usando Kotlin. Iniciaremos con una introducción a este lenguaje , sus características, ventajas, interoperabilidad y diferencias con java. Luego, usaremos Android Studio para implementar  un ejemplo práctico de una aplicación Android desarrollada con Kotlin.
 
+## Presentaciones
+
+ - Carlos https://docs.google.com/presentation/d/1JrhIvx84FigaC8zbD3aSQJmkOc3SIbsYhdZh32vJ0M4/edit?usp=sharing
+
+ - Eduardo https://docs.google.com/presentation/d/1v2rESlHanJXCFw53tJVkJoIEJgVCiPK5aphfK0To4AM/edit?usp=sharing
+
 ## [1] Bienvenido
 
 Bienvenido al CodeLab de Kotlin , antes de empezar y para tener todo listo  para el CodeLab,  te recomiendo revisar lo siguiente :

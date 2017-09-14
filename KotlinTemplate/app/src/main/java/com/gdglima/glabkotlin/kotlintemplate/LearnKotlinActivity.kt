@@ -1,6 +1,6 @@
 package com.gdglima.glabkotlin.kotlintemplate
 
-import com.google.android.gms.ads.InterstitialAd
+
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
@@ -15,7 +15,7 @@ import android.widget.TextView
                             //herencia e implementación de interfaces
 class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
 
-
+    //filtrar por este tag en el logcat
     private val LOG_TAG="LearnKotlinActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

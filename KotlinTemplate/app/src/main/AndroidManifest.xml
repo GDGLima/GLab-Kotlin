@@ -22,18 +22,14 @@
         </activity>
         <activity android:name=".JavaActivity" />
         <activity android:name=".KotlinActivity" />
-        <!-- This meta-data tag is required to use Google Play Services. -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".LearnKotlinActivity"
-            android:label="@string/title_activity_learn_kotlin"></activity> <!-- Include the AdActivity configChanges and theme. -->
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent" />
+            android:label="@string/title_activity_learn_kotlin" /> <!-- Include the AdActivity configChanges and theme. -->
+
+
+        <activity android:name=".LearningKotlinActivity" />
+
     </application>
 
 </manifest>
