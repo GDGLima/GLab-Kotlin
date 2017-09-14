@@ -11,29 +11,25 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import kotlin.reflect.KFunction1
 
-
+                            //herencia e implementación de interfaces
 class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
 
 
-    private var mLevel: Int = 0
-    private var mNextLevelButton: Button? = null
-    private var mInterstitialAd: InterstitialAd? = null
-    private var mLevelTextView: TextView? = null
     private val LOG_TAG="LearnKotlinActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn_kotlin)
+        val miboton=findViewById(R.id.btn_sentencia) as Button
 
-        findViewById(R.id.btn_sentencia).setOnClickListener(this)
+        miboton.setOnClickListener(this)
         findViewById(R.id.btn_safety_null).setOnClickListener(this)
         findViewById(R.id.btn_destructuring).setOnClickListener(this)
         findViewById(R.id.btn_lambdas).setOnClickListener(this)
 
 
-        val nombre="Kotlin"
-        Snackbar.make(findViewById(R.id.container),"Hola $nombre",Snackbar.LENGTH_LONG).show()
+
+        Snackbar.make(findViewById(R.id.container),"Bienvenido a Kotlin",Snackbar.LENGTH_LONG).show()
     }
 
 
@@ -56,9 +52,10 @@ class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    override fun onClick(button: View?) {
-        when(button?.id){
-            R.id.btn_sentencia -> mayorDeDosNumeros(4,9)
+    //recibir los eventos de click
+    override fun onClick(button: View) {
+        when(button.id){
+            R.id.btn_sentencia -> mayorDeDosNumeros(5,11)
             R.id.btn_safety_null -> safetyNull()
             R.id.btn_destructuring -> destructuring()
             R.id.btn_lambdas->lambdas()
@@ -66,47 +63,74 @@ class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     //métodos
-
+    //<EJEMPLOS>
     //sentencias como expresiones
     fun mayorDeDosNumeros(a:Int,b:Int){
+        //las sentencias retornarán valores a la variable
         val mayor=if(a>b)a else b
-        val resultadoTexto="el mayor de dos numeros es $mayor"
+        val resultadoTexto="el mayor entre $a y $b  es $mayor"
         alert(resultadoTexto)
         Log.d(LOG_TAG,resultadoTexto)
     }
 
-
+    //ejemplo de la característica de evasión para lo Null Pointer Exception de java
     fun safetyNull(){
+        //menciono que juan será instancia de
+        //DangerousPerson pero a su vez podrá recibir null
         var juan:DangerousPerson?= DangerousPerson(null,"Torres")
+                                                //(nombres,apellidos)
+        Validador.textoResultados=""
+        //imprimo el nombre de juan, pero este es null
         Validador.imprimirNombres(juan)
+        //asigno recién el nombre de juan
         juan?.nombres="Juan"
+        //imprimo el nombre de juan, ahora sí existe
         Validador.imprimirNombres(juan)
 
+        //imprimo el telefono de juan, pero este es null
         Validador.imprimirTelefono(juan)
+        //asigno una instancia de DangerousPhone
         juan?.telefono= DangerousPhone("5555-5555","51")
+        //imprimo el telefono de juan, ahora sí existe
         Validador.imprimirTelefono(juan)
 
+        //asigno null al objeto base, juan ya no existe
         juan=null
         Validador.imprimirTelefono(juan)
+
+        alert(Validador.textoResultados)
     }
 
+    //ejemplo de desestructuran o desmenusar los atributos de un objeto en diferentes variables
     fun destructuring(){
+
         val carlos=Person("Carlos","Chavez","123456789")
+
+        //desestructurando atributos de la clase persona
         val (nombres,apellidos,dni)=carlos
+
+        //imprime cada uno de ellos de manera independiente como variable en el texto
         val resultadoTexto="hola mi nombre es $nombres $apellidos y mi dni es $dni"
         Log.d(LOG_TAG,resultadoTexto)
         alert(resultadoTexto)
     }
 
+    //ejemplo de como pasar lambda a una funcion cualquiera
     fun lambdas(){
-        ejecuta({ Log.d(LOG_TAG,"hola desde aquí") })
+        ejecuta({
+            Log.d(LOG_TAG,"hola desde aquí")
+            alert("hola desde aquí")
+        })
     }
+        //esta función ejecuta una función que recibe por parámetro
         fun ejecuta(funcion: ()->Unit){
             funcion()
         }
 
+    //</EJEMPLOS>
 
 
+    //mostrar mensaje en pantalla
     fun alert(message:String){
         val builder= AlertDialog.Builder(this)
         builder.setTitle("GLAB")
