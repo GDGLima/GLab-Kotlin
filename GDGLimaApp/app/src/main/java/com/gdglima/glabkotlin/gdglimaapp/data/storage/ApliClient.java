@@ -1,15 +1,16 @@
 package com.gdglima.glabkotlin.gdglimaapp.data.storage;
 
-import com.gdglima.glabkotlin.gdglimaapp.data.model.BaseResponse;
+import com.gdglima.glabkotlin.gdglimaapp.data.model.SpeakerResponse;
+import com.gdglima.glabkotlin.gdglimaapp.data.model.SponsorResponse;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * Created by emedinaa on 2/09/17.
@@ -20,7 +21,7 @@ public class ApliClient {
     private static ServicesApiInterface servicesApiInterface;
     private static OkHttpClient.Builder httpClient;
 
-    private static final String API_BASE="http://api.backendless.com";
+    private static final String API_BASE="https://blooming-oasis-63723.herokuapp.com";
 
     private  static HttpLoggingInterceptor interceptor(){
         HttpLoggingInterceptor httpLoggingInterceptor= new HttpLoggingInterceptor();
@@ -48,8 +49,12 @@ public class ApliClient {
     public interface ServicesApiInterface {
 
         @Headers("Content-Type: application/json")
-        @POST("/v1/data/Contacts")
-        Call<BaseResponse> contacts(@Query("where") String query);
+        @POST("/gdglima/speakers")
+        Call<SpeakerResponse> speakers();
+
+        @Headers("Content-Type: application/json")
+        @GET("/gdglima/sponsors")
+        Call<SponsorResponse> sponsors();
 
     }
 }
