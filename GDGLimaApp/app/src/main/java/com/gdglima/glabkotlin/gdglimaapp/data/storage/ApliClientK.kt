@@ -39,16 +39,15 @@ class ApliClientK {
         private val API_BASE_URL = "https://blooming-oasis-63723.herokuapp.com"
 
         private fun interceptor(): HttpLoggingInterceptor {
-            val httpLoggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
-            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            val httpLoggingInterceptor = HttpLoggingInterceptor()
+            httpLoggingInterceptor.level=HttpLoggingInterceptor.Level.BODY
             return httpLoggingInterceptor
         }
 
         private fun defaultCache():Cache{
             val cacheSize:Long=10 * 1024 * 1024;
             val cacheDir = File(System.getProperty("java.io.tmpdir"), UUID.randomUUID().toString())
-            val cache:Cache= Cache(cacheDir,cacheSize)
-            return  cache
+            return Cache(cacheDir,cacheSize)
         }
 
         fun getMyApiClient(): ServicesApiInterface {

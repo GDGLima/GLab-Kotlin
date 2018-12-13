@@ -45,14 +45,14 @@ class EventsActivityK : BaseActivityK() {
     }
 
     private fun updateViewPrev(){
-        currentView!!.setBackgroundColor(resources.getColor(android.R.color.white))
-        currentView!!.setTextColor(resources.getColor(android.R.color.black))
+        currentView?.setBackgroundColor(resources.getColor(android.R.color.white))
+        currentView?.setTextColor(resources.getColor(android.R.color.black))
     }
 
     private fun updateViewSelected()
     {
-        currentView!!.setBackgroundColor(resources.getColor(R.color.greenGDGLima))
-        currentView!!.setTextColor(resources.getColor(android.R.color.white))
+        currentView?.setBackgroundColor(resources.getColor(R.color.greenGDGLima))
+        currentView?.setTextColor(resources.getColor(android.R.color.white))
     }
 
     private fun ui(){
@@ -81,10 +81,11 @@ class EventsActivityK : BaseActivityK() {
         }*/
     }
 
-    private fun renderEvents(events:List<EntityK.EventK>){
-        eventAdapter= EventAdapterK(events!!,this)
-        recyclerViewEvents.setAdapter(eventAdapter!!)
-
+    private fun renderEvents(events:List<EntityK.EventK>?){
+        events?.let {
+            eventAdapter= EventAdapterK(it,this)
+            recyclerViewEvents.adapter=eventAdapter
+        }
     }
 
     //endpoints
@@ -93,13 +94,16 @@ class EventsActivityK : BaseActivityK() {
             hideLoading()
 
             log({"onResponse $response.body()"})
-            renderEvents(response!!.body()!!.data)
+            renderEvents(response?.body()?.data)
         }
 
         override fun onFailure(call: Call<EventResponseK>?, t: Throwable?) {
-            if(!call!!.isCanceled){
-                hideLoading()
+            call?.let {
+                if(!it.isCanceled){
+                    hideLoading()
+                }
             }
+
             log({"onFailure $t"})
         }
     }
@@ -107,7 +111,7 @@ class EventsActivityK : BaseActivityK() {
     private fun requestEvents(date:String){
         showLoading()
         val call: Call<EventResponseK> = ApliClientK.getMyApiClient().events(date)
-        call!!.enqueue(callback)
+        call?.enqueue(callback)
     }
 
     private fun showLoading(){

@@ -20,12 +20,12 @@ open abstract class BaseFragmentK<T>:Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        //currentCall!!.cancel()
+        //currentCall?.cancel()
     }
 
     override fun onStop() {
         super.onStop()
-        currentCall!!.cancel()
+        currentCall?.cancel()
     }
 
     abstract fun showLoading()

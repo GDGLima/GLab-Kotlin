@@ -3,6 +3,7 @@ package com.gdglima.glabkotlin.gdglimaapp;
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.text.TextUtils.replace
 import android.view.MenuItem
 import com.gdglima.glabkotlin.gdglimaapp.ui.BaseActivityK
 import com.gdglima.glabkotlin.gdglimaapp.ui.fragmentskt.HomeFragmentK
@@ -55,17 +56,20 @@ class MainActivityK : BaseActivityK() {
                     fragment= SponsorsFragmentK.newInstance()
                 }
             }
-            changeFragment(fragment!!)
+            changeFragment(fragment)
             true
         }
 
         //slideDown(bottomNavigation)
     }
 
-    private fun  changeFragment(fragment: Fragment){
-        val fragmenTransaction:FragmentTransaction= supportFragmentManager.beginTransaction()
-        fragmenTransaction.replace(R.id.frameLayout,fragment,null)
-        fragmenTransaction.commit()
+    private fun  changeFragment(fragment: Fragment?){
+        fragment?.let {
+            supportFragmentManager.beginTransaction().apply {
+               replace(R.id.frameLayout,it,null)
+               commit()
+            }
+        }
     }
 
 }

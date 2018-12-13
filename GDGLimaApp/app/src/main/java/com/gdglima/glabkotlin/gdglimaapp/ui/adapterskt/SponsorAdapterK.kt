@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.row_sponsor.view.*
  */
 class SponsorAdapterK(val activity:Activity,val sponsors:List<EntityK.SponsorK>, val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var mInflater:LayoutInflater?=null;
+    private var mInflater:LayoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     /**
      * Constantes
@@ -32,41 +32,30 @@ class SponsorAdapterK(val activity:Activity,val sponsors:List<EntityK.SponsorK>,
         //public final int NORMAL_TYPE=2;
     }
 
-    /**
-     * Constructor
-     * https://kotlinlang.org/docs/reference/classes.html
-     */
-    init {
-        mInflater= activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater;
-    }
-
     class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textViewTitle: TextView = view.textViewTitle
+        val textViewTitle: TextView? = view.textViewTitle
     }
 
     class SponsorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textViewTitle: TextView = view.textViewName
-        val imageView: ImageView = view.imageView
+        val textViewTitle: TextView? = view.textViewName
+        val imageView: ImageView? = view.imageView
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
-        //val layoutInflater = LayoutInflater.from(parent!!.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        //val layoutInflater = LayoutInflater.from(parent.context)
         //return SpeakerAdapterK.ViewHolder(layoutInflater.inflate(R.layout.row_header_sponsor, parent, false))
         return buildViewHolder(parent,viewType)
     }
 
-    /**
-     * https://kotlinlang.org/docs/reference/typecasts.html
-     */
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if(sponsors[position]!=null){
             if(holder is HeaderViewHolder){
-                holder.textViewTitle.text= sponsors[position].title
+                holder.textViewTitle?.text= sponsors[position].title
             }else if(holder is SponsorViewHolder){
                 //(holder as? SponsorViewHolder).textViewTitle.text= sponsors[position].title
-                holder.textViewTitle.text= sponsors[position].title
-                Glide.with(holder.imageView.context)
+                holder.textViewTitle?.text= sponsors[position].title
+                Glide.with(holder.imageView?.context)
                         .load(sponsors[position].image).into(holder.imageView);
             }
         }
@@ -80,13 +69,14 @@ class SponsorAdapterK(val activity:Activity,val sponsors:List<EntityK.SponsorK>,
         return if (isHeader(position)) HEADER else ITEM
     }
 
-    private fun buildViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
-        var view: View? = null
+    private fun buildViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+        var view: View
+
         if (viewType == HEADER) {
-            view = mInflater!!.inflate(R.layout.row_header_sponsor, parent, false)
+            view = mInflater?.inflate(R.layout.row_header_sponsor, parent, false)
             return HeaderViewHolder(view)
         } else {
-            view = mInflater!!.inflate(R.layout.row_sponsor, parent, false)
+            view = mInflater?.inflate(R.layout.row_sponsor, parent, false)
             return SponsorViewHolder(view)
         }
     }
@@ -94,7 +84,7 @@ class SponsorAdapterK(val activity:Activity,val sponsors:List<EntityK.SponsorK>,
      * https://discuss.kotlinlang.org/t/ternary-operator/2116
      * return response.body()?.string() ?: "fail"
      */
-    fun isHeader(position:Int):Boolean{
+    private fun isHeader(position:Int):Boolean{
         val sponsor:EntityK.SponsorK= sponsors[position]
         if(sponsor.type.equals(EntityK.ItemType.HEADER)) return true
         return false

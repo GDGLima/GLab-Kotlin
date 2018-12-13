@@ -32,9 +32,9 @@ class SpeakerAdapterK(val speakers:List<EntityK.SpeakerK>, val context:Context):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val fullName: String = speakers[position].title!!
-        val country: String = speakers[position].country!!
-        val image:String = speakers[position].image!!
+        val fullName: String = speakers[position].title
+        val country: String = speakers[position].country
+        val image:String = speakers[position].image
         val bio: String? = speakers[position].bio
 
         holder.textViewName.text = fullName

@@ -31,7 +31,7 @@ class EventAdapterK(val events:List<EntityK.EventK>, val context: Context): Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val title: String = events[position].titulo!!
+        val title: String = events[position].titulo
         val sb = StringBuilder()
         sb.append(events[position].horario_inicio).append("-").append(events[position].horario_fin)
         val hour: String? = sb.toString()

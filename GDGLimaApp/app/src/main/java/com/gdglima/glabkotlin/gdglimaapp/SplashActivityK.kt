@@ -27,7 +27,7 @@ class SplashActivityK : BaseActivityK() {
     }
 
     private fun app() {
-        supportActionBar!!.hide()
+        supportActionBar?.hide()
         log({"Start SplashActivityK"})
         /*Timer().schedule(timerTask {
             goToMain() },TIME)*/

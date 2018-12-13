@@ -23,9 +23,9 @@ class LearnKotlinActivity : AppCompatActivity(), View.OnClickListener {
         val miboton=findViewById(R.id.btn_sentencia) as Button
 
         miboton.setOnClickListener(this)
-        findViewById(R.id.btn_safety_null).setOnClickListener(this)
-        findViewById(R.id.btn_destructuring).setOnClickListener(this)
-        findViewById(R.id.btn_lambdas).setOnClickListener(this)
+        findViewById<Button>(R.id.btn_safety_null).setOnClickListener(this)
+        findViewById<Button>(R.id.btn_destructuring).setOnClickListener(this)
+        findViewById<Button>(R.id.btn_lambdas).setOnClickListener(this)
 
 
 

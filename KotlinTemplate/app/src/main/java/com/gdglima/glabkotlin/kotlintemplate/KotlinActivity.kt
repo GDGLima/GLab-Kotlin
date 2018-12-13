@@ -24,7 +24,7 @@ class KotlinActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         //textViewHello
         imageViewJava.setOnClickListener{
-            showMessage();
+            showMessage()
         }
         userMessage= "Hola Kotlin Android "
     }

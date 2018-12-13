@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gdglima.glabkotlin.gdglimaapp.R
+import com.gdglima.glabkotlin.gdglimaapp.R.id.recyclerViewSponsors
+import com.gdglima.glabkotlin.gdglimaapp.R.id.relativeLayoutProgress
 import com.gdglima.glabkotlin.gdglimaapp.data.model.SponsorResponseK
 import com.gdglima.glabkotlin.gdglimaapp.data.storage.ApliClientK
 import com.gdglima.glabkotlin.gdglimaapp.model.EntityK
@@ -49,14 +51,14 @@ class SponsorsFragmentK : BaseFragmentK<SponsorResponseK>() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM1)
+            mParam2 = it.getString(ARG_PARAM2)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_sponsors, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_sponsors, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -67,7 +69,7 @@ class SponsorsFragmentK : BaseFragmentK<SponsorResponseK>() {
 
     private fun ui(){
         linearLayoutManager = LinearLayoutManager(activity)
-        //gridLayoutManager= GridLayoutManager(activity!!,2)
+        //gridLayoutManager= GridLayoutManager(activity,2)
 
         recyclerViewSponsors.layoutManager= linearLayoutManager
         //recyclerViewSponsors.layoutManager= gridLayoutManager
@@ -78,40 +80,45 @@ class SponsorsFragmentK : BaseFragmentK<SponsorResponseK>() {
         //ApliClientK.getMyApiClient().sponsors()
         //val call: Call<SponsorResponseK> = ApliClientK.getMyApiClient().sponsors()
         currentCall= ApliClientK.getMyApiClient().sponsors()
-        currentCall!!.enqueue(callback)
+        currentCall?.enqueue(callback)
     }
 
 
 
-    private fun renderSponsors(sponsors:List<EntityK.SponsorK>){
-        if(activity!=null){
-            sponsorAdapter= SponsorAdapterK(activity,sponsors,activity)
-            recyclerViewSponsors.setAdapter(sponsorAdapter)
+    private fun renderSponsors(sponsors:List<EntityK.SponsorK>?){
+        activity?.let {
+            sponsors?.let {mList->
+                sponsorAdapter= SponsorAdapterK(it,mList,it)
+                recyclerViewSponsors.adapter=sponsorAdapter
+            }
+        }
+
 
             /*val spanSizeLookip: GridLayoutManager.SpanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     // return adapter.isHeader(position) ? manager.getSpanCount() : 1;
-                    if(sponsorAdapter!!.isHeader(position))return  gridLayoutManager!!.spanCount
+                    if(sponsorAdapter?.isHeader(position))return  gridLayoutManager?.spanCount
                     return 1;
                 }
             }
-            gridLayoutManager!!.spanSizeLookup=spanSizeLookip*/
-
-        }
+            gridLayoutManager?.spanSizeLookup=spanSizeLookip*/
     }
     //endpoints
     private val callback: Callback<SponsorResponseK> = object: Callback<SponsorResponseK> {
         override fun onResponse(call: Call<SponsorResponseK>?, response: Response<SponsorResponseK>?) {
             log({"onResponse $response.body()"})
             hideLoading()
-            //renderSpeakers(response!!.body().data)
-            renderSponsors(response!!.body().data)
+            //renderSpeakers(response?.body().data)
+            renderSponsors(response?.body()?.data)
         }
 
         override fun onFailure(call: Call<SponsorResponseK>?, t: Throwable?) {
-            if(!call!!.isCanceled){
-                hideLoading()
+            call?.let {
+                if(!it.isCanceled){
+                    hideLoading()
+                }
             }
+
             log({"onFailure $t"})
         }
     }

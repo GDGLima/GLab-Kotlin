@@ -46,14 +46,14 @@ class SpeakersFragmentK : BaseFragmentK<SpeakerResponseK>() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM1)
+            mParam2 = it.getString(ARG_PARAM2)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_speakers, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_speakers, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -63,14 +63,16 @@ class SpeakersFragmentK : BaseFragmentK<SpeakerResponseK>() {
     }
 
     private fun ui(){
-        val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity!!)
+        val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
         recyclerViewSpeakers.layoutManager= mLayoutManager
     }
 
-    private fun renderSpeakers(speakers:List<EntityK.SpeakerK>){
-        if(activity!=null){
-            speakerAdapter= SpeakerAdapterK(speakers,activity)
-            recyclerViewSpeakers.setAdapter(speakerAdapter)
+    private fun renderSpeakers(speakers:List<EntityK.SpeakerK>?){
+        activity?.let {
+            speakers?.let { mList ->
+                speakerAdapter= SpeakerAdapterK(mList,it)
+                recyclerViewSpeakers.adapter=speakerAdapter
+            }
         }
     }
 
@@ -79,7 +81,7 @@ class SpeakersFragmentK : BaseFragmentK<SpeakerResponseK>() {
         ApliClientK.getMyApiClient().speakers()
         //val call: Call<SpeakerResponseK> = ApliClientK.getMyApiClient().speakers()
         currentCall = ApliClientK.getMyApiClient().speakers()
-        currentCall!!.enqueue(callback)
+        currentCall?.enqueue(callback)
     }
 
     //endpoints
@@ -88,12 +90,14 @@ class SpeakersFragmentK : BaseFragmentK<SpeakerResponseK>() {
             hideLoading()
 
             log({"onResponse $response.body()"})
-            renderSpeakers(response!!.body().data)
+            renderSpeakers(response?.body()?.data)
         }
 
         override fun onFailure(call: Call<SpeakerResponseK>?, t: Throwable?) {
-            if(!call!!.isCanceled){
-                hideLoading()
+            call?.let {
+                if(!it.isCanceled){
+                    hideLoading()
+                }
             }
 
             log({"onFailure $t"})
@@ -105,8 +109,7 @@ class SpeakersFragmentK : BaseFragmentK<SpeakerResponseK>() {
     }
 
     override fun hideLoading() {
-        if(relativeLayoutProgress!=null) relativeLayoutProgress.visibility=View.GONE
+        relativeLayoutProgress.visibility=View.GONE
     }
-
 
 }

@@ -29,12 +29,14 @@ class WorkShopsActivityK : BaseActivityK() {
     private fun requestWorkshops(){
         showLoading()
         val call: Call<EventResponseK> = ApliClientK.getMyApiClient().workshops()
-        call!!.enqueue(callback)
+        call?.enqueue(callback)
     }
 
-    private fun renderWorkshops(events:List<EntityK.EventK>){
-        eventAdapter= EventAdapterK(events,this)
-        recyclerViewWorkshop.setAdapter(eventAdapter)
+    private fun renderWorkshops(events:List<EntityK.EventK>?){
+        events?.let {
+            eventAdapter= EventAdapterK(it,this)
+            recyclerViewWorkshop.adapter=eventAdapter
+        }
 
     }
     //endpoints
@@ -43,12 +45,14 @@ class WorkShopsActivityK : BaseActivityK() {
             hideLoading()
 
             log({"onResponse $response.body()"})
-            renderWorkshops(response!!.body().data)
+            renderWorkshops(response?.body()?.data)
         }
 
         override fun onFailure(call: Call<EventResponseK>?, t: Throwable?) {
-            if(!call!!.isCanceled){
-                hideLoading()
+            call?.let {
+                if(!it.isCanceled){
+                    hideLoading()
+                }
             }
             log({"onFailure $t"})
         }

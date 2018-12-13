@@ -7,12 +7,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.content.res.ResourcesCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import com.gdglima.glabkotlin.gdglimaapp.R
+import com.gdglima.glabkotlin.gdglimaapp.R.id.cardViewActivities
+import com.gdglima.glabkotlin.gdglimaapp.R.id.cardViewWorkshops
 import com.gdglima.glabkotlin.gdglimaapp.ui.EventsActivityK
 import com.gdglima.glabkotlin.gdglimaapp.ui.WorkShopsActivityK
 import kotlinx.android.synthetic.main.fragment_schedule.*
@@ -48,14 +51,14 @@ class ScheduleFragmentK : Fragment() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM1)
+            mParam2 = it.getString(ARG_PARAM2)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_schedule, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_schedule, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -77,7 +80,7 @@ class ScheduleFragmentK : Fragment() {
         val x= view.right
         val y = view.bottom
 
-        val startRadius:Int= 0
+        val startRadius= 0
         val endRadius:Int= Math.hypot(view.width.toDouble(),
                 cardViewActivities.height.toDouble()).toInt()
 
